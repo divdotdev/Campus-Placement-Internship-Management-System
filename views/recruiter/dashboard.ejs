@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Recruiter Dashboard | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = 'dashboard'; %>
+    <%- include('../partials/recruiterSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <!-- Top Header -->
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1"><%= company.name %> Recruitment Portal</h2>
+          <p class="text-muted small mb-0">Manage drives, review verified applicant submissions, and advance candidates through rounds</p>
+        </div>
+        <div class="d-flex gap-2 mt-2 mt-sm-0">
+          <a href="/recruiter/drives/create" class="btn btn-primary btn-sm">+ Post New Drive</a>
+          <a href="/recruiter/profile" class="btn btn-outline-secondary btn-sm">Company Profile</a>
+        </div>
+      </div>
+
+      <!-- Recruiter Metric Cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">Published Drives</div>
+            <div class="stat-val text-primary"><%= stats.totalDrives %></div>
+            <div class="small text-muted mt-1">Campus Campaigns</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">Total Applicants</div>
+            <div class="stat-val text-info"><%= stats.totalApplicants %></div>
+            <div class="small text-muted mt-1">Submitted Resumes</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">Shortlisted</div>
+            <div class="stat-val text-warning"><%= stats.shortlisted %></div>
+            <div class="small text-muted mt-1">Advanced to Rounds</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">Offers / Selected</div>
+            <div class="stat-val text-success"><%= stats.selected %></div>
+            <div class="small text-muted mt-1">Campus Offers Extended</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Tables: My Drives & Recent Applicants -->
+      <div class="row g-4">
+        <!-- My Drives -->
+        <div class="col-lg-6">
+          <div class="portal-card h-100">
+            <div class="portal-card-header">
+              <h5 class="portal-card-title">Our Active Drives</h5>
+              <a href="/recruiter/drives" class="small text-primary text-decoration-none fw-semibold">View All &rarr;</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-portal mb-0 align-middle">
+                <thead>
+                  <tr>
+                    <th>Role</th>
+                    <th>Type</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (myDrives && myDrives.length > 0) { %>
+                    <% myDrives.forEach(drive => { %>
+                      <tr>
+                        <td class="fw-bold"><%= drive.role %></td>
+                        <td><span class="drive-type-badge type-<%= drive.type.toLowerCase() %>"><%= drive.type %></span></td>
+                        <td class="small text-muted"><%= new Date(drive.applicationDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }) %></td>
+                        <td>
+                          <a href="/recruiter/drives/<%= drive._id %>/applicants" class="btn btn-sm btn-outline-primary py-1">
+                            Applicants &rarr;
+                          </a>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  <% } else { %>
+                    <tr><td colspan="4" class="text-center py-4 text-muted">No drives posted yet.</td></tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Applicants -->
+        <div class="col-lg-6">
+          <div class="portal-card h-100">
+            <div class="portal-card-header">
+              <h5 class="portal-card-title">Recent Candidate Applications</h5>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover table-portal mb-0 align-middle">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Branch</th>
+                    <th>CGPA</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (recentApplicants && recentApplicants.length > 0) { %>
+                    <% recentApplicants.forEach(app => { %>
+                      <tr>
+                        <td class="fw-bold"><%= app.student && app.student.user ? app.student.user.name : 'Student' %></td>
+                        <td class="small"><%= app.student ? app.student.branch : 'CSE' %></td>
+                        <td class="fw-semibold"><%= app.student ? app.student.cgpa : 'N/A' %></td>
+                        <td>
+                          <span class="status-badge status-<%= app.status.toLowerCase() %>"><%= app.status %></span>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  <% } else { %>
+                    <tr><td colspan="4" class="text-center py-4 text-muted">No applicants registered yet.</td></tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

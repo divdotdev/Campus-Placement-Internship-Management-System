@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Student Registration | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-light">
+
+  <%- include('../partials/navbar') %>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-7">
+        <%- include('../partials/alerts') %>
+
+        <div class="portal-card shadow-sm">
+          <div class="portal-card-body p-4 p-md-5">
+            <div class="text-center mb-4">
+              <span class="role-tag role-student px-3 py-1 mb-2 d-inline-block">Student Portal</span>
+              <h3 class="fw-bold mb-1">Student Registration</h3>
+              <p class="text-muted small">Create your campus recruitment profile to explore and apply for drives</p>
+            </div>
+
+            <form action="/register/student" method="POST">
+              <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">1. Account Information</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-12">
+                  <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="name" name="name" required placeholder="e.g. Arjun Sharma">
+                </div>
+                <div class="col-md-12">
+                  <label for="email" class="form-label">College Email Address <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="email" name="email" required placeholder="rollno@college.edu">
+                </div>
+                <div class="col-md-6">
+                  <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="password" name="password" required minlength="6" placeholder="Min 6 characters">
+                </div>
+                <div class="col-md-6">
+                  <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required minlength="6" placeholder="Re-enter password">
+                </div>
+              </div>
+
+              <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">2. Academic Credentials</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="rollNumber" class="form-label">University Roll Number <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control text-uppercase" id="rollNumber" name="rollNumber" required placeholder="e.g. 22BCS0142">
+                </div>
+                <div class="col-md-6">
+                  <label for="branch" class="form-label">Branch <span class="text-danger">*</span></label>
+                  <select class="form-select" id="branch" name="branch" required>
+                    <option value="CSE" selected>CSE - Computer Science & Engineering</option>
+                    <option value="IT">IT - Information Technology</option>
+                    <option value="AIML">AIML - Artificial Intelligence & ML</option>
+                    <option value="ECE">ECE - Electronics & Communication</option>
+                    <option value="EE">EE - Electrical Engineering</option>
+                    <option value="MECH">MECH - Mechanical Engineering</option>
+                    <option value="CIVIL">CIVIL - Civil Engineering</option>
+                    <option value="OTHER">Other Discipline</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="semester" class="form-label">Current Semester <span class="text-danger">*</span></label>
+                  <select class="form-select" id="semester" name="semester" required>
+                    <option value="5">Semester 5 (3rd Year)</option>
+                    <option value="6">Semester 6 (3rd Year)</option>
+                    <option value="7" selected>Semester 7 (Final Year)</option>
+                    <option value="8">Semester 8 (Final Year)</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="graduationYear" class="form-label">Graduation Year <span class="text-danger">*</span></label>
+                  <select class="form-select" id="graduationYear" name="graduationYear" required>
+                    <option value="2026" selected>2026 Batch</option>
+                    <option value="2027">2027 Batch</option>
+                    <option value="2028">2028 Batch</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="cgpa" class="form-label">Current CGPA (0 - 10) <span class="text-danger">*</span></label>
+                  <input type="number" step="0.01" min="0" max="10" class="form-control" id="cgpa" name="cgpa" required placeholder="e.g. 8.25">
+                </div>
+                <div class="col-md-6">
+                  <label for="activeBacklogs" class="form-label">Active Backlogs Count</label>
+                  <input type="number" min="0" class="form-control" id="activeBacklogs" name="activeBacklogs" value="0">
+                </div>
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 9876543210">
+                </div>
+              </div>
+
+              <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary py-2 fw-semibold">Complete Student Registration</button>
+              </div>
+            </form>
+
+            <div class="mt-4 pt-3 border-top text-center small text-muted">
+              Already registered? <a href="/login?role=student" class="text-primary fw-semibold text-decoration-none">Sign In here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

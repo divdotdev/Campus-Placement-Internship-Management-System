@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Drives | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = filters.type === 'Internship' ? 'internships' : (filters.type === 'Placement' ? 'placements' : 'placements'); %>
+    <%- include('../partials/studentSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Campus Drives & Opportunities</h2>
+          <p class="text-muted small mb-0">Browse company drives with instant eligibility feedback based on your CGPA and branch</p>
+        </div>
+      </div>
+
+      <!-- Filter Controls Bar -->
+      <div class="portal-card mb-4">
+        <div class="portal-card-body p-3">
+          <form action="/student/drives" method="GET" class="row g-2 align-items-center">
+            <div class="col-md-3">
+              <input type="text" class="form-control form-control-sm" name="search" placeholder="Search company, role, location..." value="<%= filters.search %>">
+            </div>
+            <div class="col-6 col-md-2">
+              <select class="form-select form-select-sm" name="type">
+                <option value="">All Drive Types</option>
+                <option value="Placement" <%= filters.type === 'Placement' ? 'selected' : '' %>>Placement</option>
+                <option value="Internship" <%= filters.type === 'Internship' ? 'selected' : '' %>>Internship</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-2">
+              <select class="form-select form-select-sm" name="workMode">
+                <option value="">All Work Modes</option>
+                <option value="On-site" <%= filters.workMode === 'On-site' ? 'selected' : '' %>>On-site</option>
+                <option value="Hybrid" <%= filters.workMode === 'Hybrid' ? 'selected' : '' %>>Hybrid</option>
+                <option value="Remote" <%= filters.workMode === 'Remote' ? 'selected' : '' %>>Remote</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-3">
+              <select class="form-select form-select-sm" name="eligibilityFilter">
+                <option value="">Show All Drives</option>
+                <option value="eligible_only" <%= filters.eligibilityFilter === 'eligible_only' ? 'selected' : '' %>>Only Eligible for Me</option>
+              </select>
+            </div>
+            <div class="col-6 col-md-2 d-flex gap-1">
+              <button type="submit" class="btn btn-primary btn-sm w-100">Filter</button>
+              <a href="/student/drives" class="btn btn-outline-secondary btn-sm">Reset</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Drives List -->
+      <div class="row g-3">
+        <% if (drives && drives.length > 0) { %>
+          <% drives.forEach(drive => { %>
+            <div class="col-lg-6">
+              <div class="drive-card h-100 d-flex flex-column justify-content-between">
+                <div>
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="drive-type-badge type-<%= drive.type.toLowerCase() %>"><%= drive.type %></span>
+                    <% if (drive.appliedStatus) { %>
+                      <span class="status-badge status-<%= drive.appliedStatus.toLowerCase() %>">Applied: <%= drive.appliedStatus %></span>
+                    <% } else if (drive.eligibility.eligible) { %>
+                      <span class="badge-eligible">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg>
+                        Eligible
+                      </span>
+                    <% } else { %>
+                      <span class="badge-ineligible">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg>
+                        Not Eligible
+                      </span>
+                    <% } %>
+                  </div>
+
+                  <h5 class="fw-bold mb-1 text-truncate"><%= drive.companyName %></h5>
+                  <div class="text-primary fw-semibold mb-2 text-truncate"><%= drive.role %></div>
+                  <p class="text-muted small mb-3" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 38px; line-height: 1.45;">
+                    <%= drive.description %>
+                  </p>
+
+                  <!-- Criteria Pills (Neatly Clamped) -->
+                  <% 
+                    const branchDisplay = drive.eligibleBranches.includes('ALL') 
+                      ? 'All Branches' 
+                      : (drive.eligibleBranches.length <= 3 
+                          ? drive.eligibleBranches.join(', ') 
+                          : drive.eligibleBranches.slice(0, 3).join(', ') + ' +' + (drive.eligibleBranches.length - 3) + ' more');
+                  %>
+                  <div class="d-flex flex-wrap gap-1 mb-3">
+                    <span class="criteria-pill">Min CGPA: <strong><%= drive.minCGPA %></strong></span>
+                    <span class="criteria-pill">Branches: <strong><%= branchDisplay %></strong></span>
+                    <span class="criteria-pill">Batch: <strong><%= drive.graduationYear %></strong></span>
+                    <span class="criteria-pill">Backlogs: <strong>&le; <%= drive.maxBacklogs %></strong></span>
+                    <% if (drive.package) { %>
+                      <span class="criteria-pill text-success fw-bold"><%= drive.package %></span>
+                    <% } else if (drive.stipend) { %>
+                      <span class="criteria-pill text-primary fw-bold"><%= drive.stipend %></span>
+                    <% } %>
+                  </div>
+
+                  <!-- Ineligible Explanation if not eligible -->
+                  <% if (!drive.eligibility.eligible && !drive.appliedStatus) { %>
+                    <div class="alert alert-danger p-2 small mb-3">
+                      <strong>Why you are not eligible:</strong>
+                      <ul class="mb-0 ps-3">
+                        <% drive.eligibility.reasons.forEach(r => { %>
+                          <li><%= r %></li>
+                        <% }) %>
+                      </ul>
+                    </div>
+                  <% } %>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                  <span class="small text-muted">
+                    Deadline: <strong><%= new Date(drive.applicationDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %></strong>
+                  </span>
+                  <a href="/student/drives/<%= drive._id %>" class="btn btn-sm btn-outline-primary">View Details & Apply</a>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="col-12">
+            <div class="portal-card text-center p-5">
+              <h5 class="text-muted">No drives match your current filter criteria</h5>
+              <p class="small text-muted">Try clearing the filters to view all available campus drives.</p>
+              <a href="/student/drives" class="btn btn-sm btn-primary">Reset Filters</a>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

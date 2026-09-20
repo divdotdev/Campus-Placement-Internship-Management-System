@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Placement Analytics | Placement Cell' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = 'analytics'; %>
+    <%- include('../partials/adminSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Campus Placement &amp; Internship Analytics</h2>
+          <p class="text-muted small mb-0">Statistical reports on branch placement conversions, recruiter hiring, and candidate pipelines</p>
+        </div>
+      </div>
+
+      <!-- Overview Cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div class="stat-label">Total Student Pool</div>
+            <div class="stat-val text-primary"><%= totalStudents %></div>
+            <div class="small text-muted mt-1">Registered Eligible Candidates</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div class="stat-label">Total Placed Students</div>
+            <div class="stat-val text-success"><%= placedStudents %></div>
+            <div class="small text-muted mt-1">1-Offer Policy Converted</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card">
+            <div class="stat-label">Overall Placement Ratio</div>
+            <div class="stat-val text-warning"><%= totalStudents > 0 ? ((placedStudents / totalStudents) * 100).toFixed(1) : 0 %>%</div>
+            <div class="small text-muted mt-1">Campus Recruitment Efficiency</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Branch-wise Breakdown Table -->
+      <div class="portal-card mb-4">
+        <div class="portal-card-header">
+          <h5 class="portal-card-title">Academic Branch-wise Placement Statistics</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover table-portal mb-0 align-middle">
+            <thead>
+              <tr>
+                <th>Branch</th>
+                <th>Total Registered</th>
+                <th>Placed Students</th>
+                <th>Unplaced</th>
+                <th>Placement Rate (%)</th>
+                <th>Avg CGPA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (branchStats && branchStats.length > 0) { %>
+                <% branchStats.forEach(b => { 
+                  const rate = b.total > 0 ? ((b.placed / b.total) * 100).toFixed(1) : 0;
+                %>
+                  <tr>
+                    <td class="fw-bold"><%= b._id %></td>
+                    <td><%= b.total %></td>
+                    <td class="text-success fw-semibold"><%= b.placed %></td>
+                    <td class="text-muted"><%= b.total - b.placed %></td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="progress flex-grow-1" style="height: 6px; width: 80px;">
+                          <div class="progress-bar bg-primary" role="progressbar" style="width: <%= rate %>%;"></div>
+                        </div>
+                        <span class="small fw-bold"><%= rate %>%</span>
+                      </div>
+                    </td>
+                    <td class="font-monospace"><%= b.avgCGPA ? b.avgCGPA.toFixed(2) : 'N/A' %></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr><td colspan="6" class="text-center py-4 text-muted">No branch data available yet.</td></tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Company Selections Table -->
+      <div class="portal-card">
+        <div class="portal-card-header">
+          <h5 class="portal-card-title">Recruiter Selections (Offers Extended)</h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover table-portal mb-0 align-middle">
+            <thead>
+              <tr>
+                <th>Recruiter / Organization</th>
+                <th>Total Selected Candidates</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (companyStats && companyStats.length > 0) { %>
+                <% companyStats.forEach(c => { %>
+                  <tr>
+                    <td class="fw-bold"><%= c._id %></td>
+                    <td>
+                      <span class="badge bg-success-subtle text-success border border-success px-3 py-1 fs-6">
+                        <%= c.selections %> Students Selected
+                      </span>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr><td colspan="2" class="text-center py-4 text-muted">No company selections finalized yet.</td></tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

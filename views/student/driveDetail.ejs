@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Drive Details | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = drive.type === 'Internship' ? 'internships' : 'placements'; %>
+    <%- include('../partials/studentSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <div class="mb-3">
+        <a href="/student/drives" class="text-decoration-none small text-muted">&larr; Back to all drives</a>
+      </div>
+
+      <div class="row g-4">
+        <!-- Main Drive Overview -->
+        <div class="col-lg-8">
+          <div class="portal-card">
+            <div class="portal-card-body p-4">
+              <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                <div>
+                  <span class="drive-type-badge type-<%= drive.type.toLowerCase() %> me-2"><%= drive.type %></span>
+                  <span class="badge bg-light text-dark border"><%= drive.workMode %></span>
+                  <span class="badge <%= drive.status === 'Active' ? 'bg-success' : 'bg-secondary' %> ms-1"><%= drive.status %></span>
+                </div>
+                <% if (drive.companyWebsite) { %>
+                  <a href="<%= drive.companyWebsite %>" target="_blank" rel="noopener noreferrer" class="small text-primary text-decoration-none">
+                    Visit Company Website &rarr;
+                  </a>
+                <% } %>
+              </div>
+
+              <h3 class="fw-bold text-navy mb-1"><%= drive.role %></h3>
+              <h5 class="text-primary fw-semibold mb-3"><%= drive.companyName %></h5>
+
+              <div class="row g-3 p-3 bg-light rounded-3 mb-4">
+                <div class="col-6 col-md-4">
+                  <div class="small text-muted">Compensation</div>
+                  <div class="fw-bold text-success fs-6"><%= drive.package || drive.stipend || 'Competitive' %></div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="small text-muted">Job Location</div>
+                  <div class="fw-bold"><%= drive.location %></div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="small text-muted">Openings</div>
+                  <div class="fw-bold"><%= drive.openings %> Vacancies</div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="small text-muted">Application Deadline</div>
+                  <div class="fw-bold text-danger">
+                    <%= new Date(drive.applicationDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="small text-muted">Drive / Interview Date</div>
+                  <div class="fw-bold">
+                    <%= drive.driveDate ? new Date(drive.driveDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : 'To Be Announced' %>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="small text-muted">Target Batch</div>
+                  <div class="fw-bold"><%= drive.graduationYear %> Passouts</div>
+                </div>
+              </div>
+
+              <h6 class="fw-bold text-primary mb-2">Job Description & Responsibilities</h6>
+              <div class="text-secondary mb-4" style="line-height: 1.7; white-space: pre-line;">
+                <%= drive.description %>
+              </div>
+
+              <% if (drive.requiredSkills && drive.requiredSkills.length > 0) { %>
+                <h6 class="fw-bold text-primary mb-2">Required Skills & Technologies</h6>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                  <% drive.requiredSkills.forEach(skill => { %>
+                    <span class="badge bg-secondary-subtle text-secondary-emphasis px-3 py-2 border"><%= skill %></span>
+                  <% }) %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar: Real-Time Eligibility Card & Apply Action -->
+        <div class="col-lg-4">
+          <div class="portal-card sticky-top" style="top: 85px;">
+            <div class="portal-card-header">
+              <h5 class="portal-card-title">Eligibility Evaluation</h5>
+            </div>
+            <div class="portal-card-body p-4">
+              <!-- Contained Criteria Comparison (Zero Overflow) -->
+              <div class="d-flex flex-column gap-2 mb-3">
+                <!-- CGPA Row -->
+                <div class="d-flex justify-content-between align-items-center p-2 rounded bg-light border">
+                  <div>
+                    <span class="text-muted d-block text-uppercase" style="font-size: 0.68rem; letter-spacing: 0.04em;">Minimum CGPA</span>
+                    <span class="fw-bold fs-6"><%= drive.minCGPA %></span>
+                  </div>
+                  <div class="text-end">
+                    <span class="text-muted d-block text-uppercase" style="font-size: 0.68rem; letter-spacing: 0.04em;">Your CGPA</span>
+                    <span class="fw-bold fs-6 <%= profile.cgpa >= drive.minCGPA ? 'text-success' : 'text-danger' %>"><%= profile.cgpa %></span>
+                  </div>
+                </div>
+
+                <!-- Eligible Branches Row -->
+                <div class="p-2 rounded bg-light border">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-muted text-uppercase" style="font-size: 0.68rem; letter-spacing: 0.04em;">Eligible Branches</span>
+                    <span class="fw-bold small <%= drive.eligibleBranches.includes('ALL') || drive.eligibleBranches.includes(profile.branch) ? 'text-success' : 'text-danger' %>">
+                      You: <%= profile.branch %>
+                    </span>
+                  </div>
+                  <div class="d-flex flex-wrap gap-1">
+                    <% drive.eligibleBranches.forEach(br => { %>
+                      <span class="badge <%= br === profile.branch || br === 'ALL' ? 'bg-primary text-white' : 'bg-white text-secondary border' %>" style="font-size: 0.68rem;">
+                        <%= br %>
+                      </span>
+                    <% }) %>
+                  </div>
+                </div>
+
+                <!-- Batch & Backlogs in 2 Columns -->
+                <div class="row g-2">
+                  <div class="col-6">
+                    <div class="p-2 rounded bg-light border h-100">
+                      <span class="text-muted d-block text-uppercase" style="font-size: 0.68rem; letter-spacing: 0.04em;">Target Batch</span>
+                      <span class="fw-bold"><%= drive.graduationYear %></span>
+                      <div class="small <%= profile.graduationYear === drive.graduationYear ? 'text-success' : 'text-danger' %>" style="font-size: 0.72rem;">
+                        Your batch: <%= profile.graduationYear %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 rounded bg-light border h-100">
+                      <span class="text-muted d-block text-uppercase" style="font-size: 0.68rem; letter-spacing: 0.04em;">Max Backlogs</span>
+                      <span class="fw-bold">&le; <%= drive.maxBacklogs %></span>
+                      <div class="small <%= profile.activeBacklogs <= drive.maxBacklogs ? 'text-success' : 'text-danger' %>" style="font-size: 0.72rem;">
+                        You have: <%= profile.activeBacklogs %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Eligibility Status Feedback -->
+              <% if (existingApplication) { %>
+                <div class="alert alert-info text-center mb-3">
+                  <div class="fw-bold mb-1">Application Submitted</div>
+                  <div class="small mb-2">You applied on <%= new Date(existingApplication.applicationDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %></div>
+                  <span class="status-badge status-<%= existingApplication.status.toLowerCase() %>"><%= existingApplication.status %></span>
+                </div>
+                <a href="/student/applications" class="btn btn-outline-primary btn-sm w-100">View in Application Tracker</a>
+              <% } else if (eligibility.eligible) { %>
+                <div class="alert alert-success d-flex align-items-center mb-3">
+                  <svg class="bi flex-shrink-0 me-2" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                  </svg>
+                  <div class="small fw-semibold">&check; You are eligible for this opportunity!</div>
+                </div>
+
+                <form action="/student/drives/<%= drive._id %>/apply" method="POST" onsubmit="return confirm('Confirm application submission to <%= drive.companyName %> for <%= drive.role %>?');">
+                  <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                    Submit Application Now
+                  </button>
+                </form>
+                <div class="text-center small text-muted mt-2">
+                  Your registered profile & resume link will be shared with the recruiter.
+                </div>
+              <% } else { %>
+                <div class="alert alert-danger mb-3">
+                  <div class="d-flex align-items-center mb-1">
+                    <svg class="bi flex-shrink-0 me-2" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                    </svg>
+                    <div class="fw-bold small">&cross; You are currently not eligible for this opportunity</div>
+                  </div>
+                  <ul class="mb-0 ps-3 small">
+                    <% eligibility.reasons.forEach(reason => { %>
+                      <li><%= reason %></li>
+                    <% }) %>
+                  </ul>
+                </div>
+
+                <button class="btn btn-secondary w-100 py-2 fw-semibold" disabled>
+                  Application Disabled (Ineligible)
+                </button>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

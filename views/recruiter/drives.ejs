@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Our Drives | Recruiter Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = 'drives'; %>
+    <%- include('../partials/recruiterSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Company Recruitment Campaigns</h2>
+          <p class="text-muted small mb-0">Active placement and internship drives posted by <%= company.name %></p>
+        </div>
+        <a href="/recruiter/drives/create" class="btn btn-primary btn-sm px-3 shadow-sm">+ Post New Drive</a>
+      </div>
+
+      <div class="portal-card">
+        <div class="table-responsive">
+          <table class="table table-hover table-portal mb-0 align-middle">
+            <thead>
+              <tr>
+                <th style="min-width: 170px;">Job Role</th>
+                <th style="min-width: 90px;">Type</th>
+                <th style="min-width: 95px;">Work Mode</th>
+                <th style="min-width: 130px;">Package / Stipend</th>
+                <th style="min-width: 120px;">Applications</th>
+                <th style="min-width: 110px;">Deadline</th>
+                <th style="min-width: 90px;">Status</th>
+                <th class="text-end" style="min-width: 150px;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (drives && drives.length > 0) { %>
+                <% drives.forEach(drive => { %>
+                  <tr>
+                    <td>
+                      <div class="fw-bold"><%= drive.role %></div>
+                      <div class="small text-muted"><%= drive.location %></div>
+                    </td>
+                    <td>
+                      <span class="drive-type-badge type-<%= drive.type.toLowerCase() %>"><%= drive.type %></span>
+                    </td>
+                    <td><span class="badge bg-light text-dark border"><%= drive.workMode %></span></td>
+                    <td class="fw-bold text-success"><%= drive.package || drive.stipend || 'Competitive' %></td>
+                    <td>
+                      <a href="/recruiter/drives/<%= drive._id %>/applicants" class="badge bg-primary text-white text-decoration-none px-2 py-1">
+                        <%= drive.applicantCount %> Applicants &rarr;
+                      </a>
+                    </td>
+                    <td class="small <%= new Date(drive.applicationDeadline) < new Date() ? 'text-danger fw-bold' : 'text-muted' %>">
+                      <%= new Date(drive.applicationDeadline).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %>
+                    </td>
+                    <td>
+                      <span class="badge <%= drive.status === 'Active' ? 'bg-success-subtle text-success border-success' : 'bg-secondary-subtle text-secondary' %> border px-2 py-1">
+                        <%= drive.status %>
+                      </span>
+                    </td>
+                    <td class="text-end">
+                      <a href="/recruiter/drives/<%= drive._id %>/applicants" class="btn btn-sm btn-outline-primary">
+                        Review Applicants &rarr;
+                      </a>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="8" class="text-center py-5 text-muted">
+                    No drives posted yet. Click "+ Post New Drive" to create your first recruitment drive.
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Placement Status | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = 'placementStatus'; %>
+    <%- include('../partials/studentSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Campus Placement Status</h2>
+          <p class="text-muted small mb-0">Official institutional record of your campus recruitment outcome and placement policy standing</p>
+        </div>
+      </div>
+
+      <% if (profile.isPlaced) { %>
+        <!-- Placed Card with Congratulations Banner -->
+        <div class="portal-card border-success shadow-sm mb-4">
+          <div class="portal-card-body p-4 p-md-5 text-center">
+            <div class="stat-icon stat-icon-green mx-auto mb-3" style="width: 56px; height: 56px; font-size: 1.75rem;">
+              &check;
+            </div>
+            <h3 class="fw-bold text-success mb-1">Offer Accepted &amp; Placed!</h3>
+            <p class="text-muted mb-4">Congratulations on securing a campus offer through the college recruitment drive.</p>
+
+            <div class="row justify-content-center g-3 mb-4">
+              <div class="col-md-8 col-lg-6">
+                <div class="p-4 bg-light rounded-3 text-start border">
+                  <div class="d-flex justify-content-between py-2 border-bottom">
+                    <span class="text-muted">Selected Company</span>
+                    <span class="fw-bold fs-6 text-primary"><%= profile.placedCompany %></span>
+                  </div>
+                  <div class="d-flex justify-content-between py-2 border-bottom">
+                    <span class="text-muted">Job Role</span>
+                    <span class="fw-bold"><%= profile.placedRole %></span>
+                  </div>
+                  <div class="d-flex justify-content-between py-2 border-bottom">
+                    <span class="text-muted">Annual Compensation (CTC)</span>
+                    <span class="fw-bold text-success"><%= profile.placedPackage || 'Competitive Package' %></span>
+                  </div>
+                  <div class="d-flex justify-content-between py-2">
+                    <span class="text-muted">Student Roll Number</span>
+                    <span class="fw-bold font-monospace"><%= profile.rollNumber %></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Institutional Placement Policy Box -->
+            <div class="alert alert-warning text-start mx-auto col-md-10 col-lg-8 small mb-0">
+              <h6 class="alert-heading fw-bold mb-1">Institutional Placement Policy Notice:</h6>
+              <p class="mb-1">
+                You have already been placed through the campus placement process. According to the placement policy, you cannot apply for additional placement drives.
+              </p>
+              <span class="text-muted">Note: Summer and winter internship opportunities remain accessible if you wish to upskill.</span>
+            </div>
+          </div>
+        </div>
+      <% } else { %>
+        <!-- Unplaced Status Card -->
+        <div class="portal-card">
+          <div class="portal-card-body p-5 text-center">
+            <div class="stat-icon stat-icon-blue mx-auto mb-3">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h4 class="fw-bold mb-2">Recruitment Cycle In Progress</h4>
+            <p class="text-muted col-md-8 mx-auto mb-4">
+              You are currently active in the placement cycle and eligible to apply for all active campus placement and internship drives matching your academic criteria.
+            </p>
+
+            <div class="d-flex justify-content-center gap-2">
+              <a href="/student/drives?type=Placement" class="btn btn-primary btn-sm px-3">Browse Placement Drives</a>
+              <a href="/student/profile" class="btn btn-outline-secondary btn-sm px-3">Update Skills &amp; Resume</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

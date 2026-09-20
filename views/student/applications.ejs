@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'My Applications | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = 'applications'; %>
+    <%- include('../partials/studentSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1">My Applications Tracker</h2>
+          <p class="text-muted small mb-0">Track real-time recruitment pipeline stages from initial screening to final selection</p>
+        </div>
+        <a href="/student/drives" class="btn btn-primary btn-sm">Explore More Drives</a>
+      </div>
+
+      <% if (applications && applications.length > 0) { %>
+        <div class="row g-4">
+          <% applications.forEach((app, idx) => { %>
+            <div class="col-12">
+              <div class="portal-card">
+                <div class="portal-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <div>
+                    <h5 class="portal-card-title d-inline-block me-2"><%= app.companyName %></h5>
+                    <span class="text-muted small">&bull; <%= app.drive ? app.drive.role : 'Campus Recruitment' %></span>
+                    <% if (app.drive) { %>
+                      <span class="drive-type-badge type-<%= app.drive.type.toLowerCase() %> ms-2"><%= app.drive.type %></span>
+                    <% } %>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted">Applied on <%= new Date(app.applicationDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) %></span>
+                    <span class="status-badge status-<%= app.status.toLowerCase() %>"><%= app.status %></span>
+                  </div>
+                </div>
+
+                <div class="portal-card-body p-4">
+                  <!-- Visual Pipeline Stepper (Contained in scrollable wrap for zero spill) -->
+                  <% 
+                    const stages = ['Applied', 'Shortlisted', 'Interviewed', 'Selected'];
+                    const currentIdx = stages.indexOf(app.status);
+                    const isRejected = app.status === 'Rejected';
+                  %>
+
+                  <div class="pipeline-stepper-wrap mb-4">
+                    <div class="pipeline-stepper">
+                      <% stages.forEach((stage, sIdx) => { 
+                        let circleClass = '';
+                        if (isRejected && sIdx === 0) circleClass = 'active';
+                        else if (!isRejected && sIdx < currentIdx) circleClass = 'passed';
+                        else if (!isRejected && sIdx === currentIdx) circleClass = 'active';
+                      %>
+                        <div class="stepper-step">
+                          <div class="step-circle <%= circleClass %>">
+                            <% if (!isRejected && sIdx < currentIdx) { %>
+                              &check;
+                            <% } else { %>
+                              <%= sIdx + 1 %>
+                            <% } %>
+                          </div>
+                          <div class="step-label"><%= stage %></div>
+                        </div>
+                      <% }) %>
+
+                      <% if (isRejected) { %>
+                        <div class="stepper-step">
+                          <div class="step-circle rejected-state">&cross;</div>
+                          <div class="step-label text-danger">Rejected</div>
+                        </div>
+                      <% } %>
+                    </div>
+                  </div>
+
+                  <!-- Status History Timeline Accordion -->
+                  <div class="accordion" id="accordionHistory<%= idx %>">
+                    <div class="accordion-item border-0 bg-light rounded-2">
+                      <h2 class="accordion-header" id="heading<%= idx %>">
+                        <button class="accordion-button collapsed py-2 px-3 bg-light small fw-bold text-muted" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= idx %>" aria-expanded="false" aria-controls="collapse<%= idx %>">
+                          View Stage Activity Log (<%= app.statusHistory ? app.statusHistory.length : 1 %> events)
+                        </button>
+                      </h2>
+                      <div id="collapse<%= idx %>" class="accordion-collapse collapse" aria-labelledby="heading<%= idx %>" data-bs-parent="#accordionHistory<%= idx %>">
+                        <div class="accordion-body p-3">
+                          <% if (app.statusHistory && app.statusHistory.length > 0) { %>
+                            <ul class="timeline-list list-unstyled mb-0">
+                              <% app.statusHistory.forEach(hist => { %>
+                                <li class="d-flex align-items-start gap-3 py-2 border-bottom">
+                                  <span class="status-badge status-<%= hist.status.toLowerCase() %> px-2 py-1"><%= hist.status %></span>
+                                  <div>
+                                    <div class="small fw-semibold"><%= hist.comment || 'Status updated.' %></div>
+                                    <div class="small text-muted"><%= new Date(hist.changedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) %></div>
+                                  </div>
+                                </li>
+                              <% }) %>
+                            </ul>
+                          <% } else { %>
+                            <div class="small text-muted">Initial stage: Applied</div>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="portal-card text-center p-5">
+          <div class="stat-icon stat-icon-blue mx-auto mb-3">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h5 class="fw-bold">No Applications Submitted Yet</h5>
+          <p class="text-muted small">You haven't applied to any drives. Explore active placement & internship opportunities matching your profile.</p>
+          <a href="/student/drives" class="btn btn-primary btn-sm mt-2">Explore Drives Now</a>
+        </div>
+      <% } %>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

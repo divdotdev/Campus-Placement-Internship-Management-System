@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Recruiter Registration | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-light">
+
+  <%- include('../partials/navbar') %>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-7">
+        <%- include('../partials/alerts') %>
+
+        <div class="portal-card shadow-sm">
+          <div class="portal-card-body p-4 p-md-5">
+            <div class="text-center mb-4">
+              <span class="role-tag role-recruiter px-3 py-1 mb-2 d-inline-block">Recruiter Portal</span>
+              <h3 class="fw-bold mb-1">Company & Recruiter Registration</h3>
+              <p class="text-muted small">Post placement & internship drives and review verified student profiles</p>
+            </div>
+
+            <form action="/register/recruiter" method="POST">
+              <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">1. Account Information</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Contact / HR Person Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="name" name="name" required placeholder="e.g. Priya Nair">
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Corporate Email Address <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="email" name="email" required placeholder="hr@company.com">
+                </div>
+                <div class="col-md-6">
+                  <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="password" name="password" required minlength="6" placeholder="Min 6 characters">
+                </div>
+                <div class="col-md-6">
+                  <label for="confirmPassword" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required minlength="6" placeholder="Re-enter password">
+                </div>
+              </div>
+
+              <h6 class="fw-bold text-primary border-bottom pb-2 mb-3">2. Company Profile</h6>
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="companyName" class="form-label">Company Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="companyName" name="companyName" required placeholder="e.g. Microsoft India">
+                </div>
+                <div class="col-md-6">
+                  <label for="website" class="form-label">Company Website</label>
+                  <input type="url" class="form-control" id="website" name="website" placeholder="https://www.company.com">
+                </div>
+                <div class="col-md-12">
+                  <label for="description" class="form-label">Company Overview / Description</label>
+                  <textarea class="form-control" id="description" name="description" rows="3" placeholder="Brief overview of company, industry, and culture"></textarea>
+                </div>
+              </div>
+
+              <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary py-2 fw-semibold">Register Recruiter Account</button>
+              </div>
+            </form>
+
+            <div class="mt-4 pt-3 border-top text-center small text-muted">
+              Already registered? <a href="/login?role=recruiter" class="text-primary fw-semibold text-decoration-none">Sign In here</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

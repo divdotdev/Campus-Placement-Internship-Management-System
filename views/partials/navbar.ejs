@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg portal-navbar sticky-top">
+  <div class="container-fluid px-lg-4">
+    <a class="portal-brand" href="/">
+      <img src="/images/logo.svg" alt="Placement Cell Logo" width="34" height="34" class="d-inline-block align-text-top">
+      <div>
+        <span>Campus Placement Portal</span>
+        <span class="brand-sub">Internship & Career Management</span>
+      </div>
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <% if (currentUser && currentUser.role === 'student') { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/student/drives?type=Placement">Placement Drives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/student/drives?type=Internship">Internships</a>
+          </li>
+        <% } else if (currentUser && currentUser.role === 'admin') { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/drives">Manage Drives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/students">Students Directory</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/analytics">Analytics</a>
+          </li>
+        <% } else if (currentUser && currentUser.role === 'recruiter') { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/recruiter/drives">Our Drives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/recruiter/drives/create">Post New Drive</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login?role=student">Placement Drives</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login?role=student">Internships</a>
+          </li>
+        <% } %>
+      </ul>
+
+      <div class="d-flex align-items-center gap-2">
+        <% if (currentUser) { %>
+          <div class="user-badge-pill me-2">
+            <span class="role-tag role-<%= currentUser.role %>"><%= currentUser.role %></span>
+            <span><%= currentUser.name %></span>
+          </div>
+
+          <% if (currentUser.role === 'student') { %>
+            <a href="/student/dashboard" class="btn btn-sm btn-outline-primary">Dashboard</a>
+          <% } else if (currentUser.role === 'admin') { %>
+            <a href="/admin/dashboard" class="btn btn-sm btn-outline-danger">Admin Panel</a>
+          <% } else if (currentUser.role === 'recruiter') { %>
+            <a href="/recruiter/dashboard" class="btn btn-sm btn-outline-warning text-dark">Recruiter Panel</a>
+          <% } %>
+
+          <a href="/logout" class="btn btn-sm btn-outline-secondary">Sign Out</a>
+        <% } else { %>
+          <a href="/login" class="btn btn-outline-primary btn-sm px-3">Sign In</a>
+          <div class="dropdown">
+            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="registerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              Register
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="registerDropdown">
+              <li><a class="dropdown-item py-2" href="/register/student">Student Registration</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2" href="/register/recruiter">Company / Recruiter Registration</a></li>
+            </ul>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

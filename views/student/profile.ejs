@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'My Profile | Placement Portal' %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <%- include('../partials/navbar') %>
+
+  <div class="portal-container">
+    <% const activeTab = 'profile'; %>
+    <%- include('../partials/studentSidebar', { activeTab }) %>
+
+    <main class="portal-content">
+      <%- include('../partials/alerts') %>
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Student Profile</h2>
+          <p class="text-muted small mb-0">Keep your academic records and resume links updated for automatic drive eligibility</p>
+        </div>
+      </div>
+
+      <!-- Completeness Meter -->
+      <div class="portal-card mb-4">
+        <div class="portal-card-body p-4">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <span class="h5 fw-bold mb-0">Profile Completion: <%= completeness.percentage %>%</span>
+              <% if (completeness.percentage >= 90) { %>
+                <span class="badge bg-success ms-2">Excellent</span>
+              <% } else { %>
+                <span class="badge bg-warning text-dark ms-2">Action Needed</span>
+              <% } %>
+            </div>
+          </div>
+          <div class="progress mb-2" style="height: 10px;">
+            <div class="progress-bar <%= completeness.percentage >= 90 ? 'bg-success' : 'bg-primary' %>" role="progressbar" style="width: <%= completeness.percentage %>%;" aria-valuenow="<%= completeness.percentage %>" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <% if (completeness.missingFields.length > 0) { %>
+            <p class="small text-muted mb-0">
+              <strong>Pending details:</strong> <%= completeness.missingFields.join(', ') %>. Adding these improves your eligibility matching.
+            </p>
+          <% } else { %>
+            <p class="small text-success mb-0">
+              &check; All critical academic and professional credentials are fully verified.
+            </p>
+          <% } %>
+        </div>
+      </div>
+
+      <div class="portal-card">
+        <div class="portal-card-body p-4">
+          <form action="/student/profile" method="POST">
+            <!-- Section 1: Personal Details -->
+            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">1. Personal Details</h5>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" value="<%= currentUser.name %>" disabled>
+                <div class="form-text">Name is linked to your registered student account.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Registered College Email</label>
+                <input type="email" class="form-control" value="<%= currentUser.email %>" disabled>
+                <div class="form-text">Primary contact for placement interview communications.</div>
+              </div>
+              <div class="col-md-6">
+                <label for="rollNumber" class="form-label">University Roll Number <span class="text-danger">*</span></label>
+                <input type="text" class="form-control text-uppercase" id="rollNumber" name="rollNumber" required value="<%= profile.rollNumber %>">
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 9876543210" value="<%= profile.phone || '' %>">
+              </div>
+            </div>
+
+            <!-- Section 2: Academic Details -->
+            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">2. Academic Information (Used for Auto-Eligibility)</h5>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label for="branch" class="form-label">Branch <span class="text-danger">*</span></label>
+                <select class="form-select" id="branch" name="branch" required>
+                  <% const branches = ['CSE', 'IT', 'AIML', 'ECE', 'EE', 'MECH', 'CIVIL', 'OTHER']; %>
+                  <% branches.forEach(b => { %>
+                    <option value="<%= b %>" <%= profile.branch === b ? 'selected' : '' %>><%= b %></option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="semester" class="form-label">Current Semester <span class="text-danger">*</span></label>
+                <select class="form-select" id="semester" name="semester" required>
+                  <% for (let i = 1; i <= 8; i++) { %>
+                    <option value="<%= i %>" <%= profile.semester === i ? 'selected' : '' %>>Semester <%= i %></option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="graduationYear" class="form-label">Graduation Year <span class="text-danger">*</span></label>
+                <select class="form-select" id="graduationYear" name="graduationYear" required>
+                  <% [2025, 2026, 2027, 2028].forEach(yr => { %>
+                    <option value="<%= yr %>" <%= profile.graduationYear === yr ? 'selected' : '' %>><%= yr %> Batch</option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="cgpa" class="form-label">Cumulative CGPA (0.00 - 10.00) <span class="text-danger">*</span></label>
+                <input type="number" step="0.01" min="0" max="10" class="form-control" id="cgpa" name="cgpa" required value="<%= profile.cgpa %>">
+              </div>
+              <div class="col-md-4">
+                <label for="activeBacklogs" class="form-label">Active Backlogs Count <span class="text-danger">*</span></label>
+                <input type="number" min="0" class="form-control" id="activeBacklogs" name="activeBacklogs" required value="<%= profile.activeBacklogs || 0 %>">
+              </div>
+            </div>
+
+            <!-- Section 3: Professional & Career Links -->
+            <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">3. Professional Profiles & Skills</h5>
+            <div class="row g-3 mb-4">
+              <div class="col-md-12">
+                <label for="skills" class="form-label">Technical Skills (comma separated)</label>
+                <input type="text" class="form-control" id="skills" name="skills" placeholder="e.g. JavaScript, Node.js, Python, MongoDB, React, Java" value="<%= profile.skills ? profile.skills.join(', ') : '' %>">
+                <div class="form-text">List relevant programming languages, databases, tools, and frameworks.</div>
+              </div>
+              <div class="col-md-12">
+                <label for="resumeUrl" class="form-label">Resume Link (Google Drive / Cloudflare / Dropbox)</label>
+                <input type="url" class="form-control" id="resumeUrl" name="resumeUrl" placeholder="https://drive.google.com/your-resume-link" value="<%= profile.resumeUrl || '' %>">
+              </div>
+              <div class="col-md-6">
+                <label for="linkedinUrl" class="form-label">LinkedIn Profile URL</label>
+                <input type="url" class="form-control" id="linkedinUrl" name="linkedinUrl" placeholder="https://linkedin.com/in/username" value="<%= profile.linkedinUrl || '' %>">
+              </div>
+              <div class="col-md-6">
+                <label for="githubUrl" class="form-label">GitHub Profile URL</label>
+                <input type="url" class="form-control" id="githubUrl" name="githubUrl" placeholder="https://github.com/username" value="<%= profile.githubUrl || '' %>">
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+              <a href="/student/dashboard" class="btn btn-outline-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%- include('../partials/footer') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
