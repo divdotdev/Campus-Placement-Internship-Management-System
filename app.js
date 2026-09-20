@@ -16,6 +16,19 @@ connectDB();
 
 const app = express();
 
+// Trust reverse proxy (essential for Vercel HTTPS & secure cookies)
+app.set('trust proxy', 1);
+
+// Ensure database connection before processing requests
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 // View engine setup (EJS)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -115,16 +128,18 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start listening
-const PORT = process.env.PORT || 3000;
-const HOST = '0.0.0.0';
-app.listen(PORT, HOST, () => {
-  console.log(`=======================================================`);
-  console.log(` Campus Placement & Internship Management System`);
-  console.log(` Server active at: http://localhost:${PORT}`);
-  console.log(` Bound to interface: ${HOST}:${PORT}`);
-  console.log(` Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`=======================================================`);
-});
+// Start listening (standalone server mode only; Vercel handles invocation via exported app)
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 3000;
+  const HOST = '0.0.0.0';
+  app.listen(PORT, HOST, () => {
+    console.log(`=======================================================`);
+    console.log(` Campus Placement & Internship Management System`);
+    console.log(` Server active at: http://localhost:${PORT}`);
+    console.log(` Bound to interface: ${HOST}:${PORT}`);
+    console.log(` Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`=======================================================`);
+  });
+}
 
 module.exports = app;
