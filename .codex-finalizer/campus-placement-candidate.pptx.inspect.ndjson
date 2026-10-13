@@ -1,0 +1,181 @@
+{"kind":"deck","id":"pr/fpi5nj","name":"Deck"}
+{"kind":"layout","layoutId":"d1f8cc64-6eee-4aae-9fb7-dca36b39a145","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"29469158-e525-47c4-a1ce-8771138120d5","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/2ao5rp","slide":1,"title":"COLLEGE PROJECT","textShapes":8}
+{"kind":"textbox","id":"sh/l87a5s7i","slide":1,"text":"COLLEGE PROJECT","textPreview":"COLLEGE PROJECT","textChars":15,"textLines":1,"bbox":[140,63,250,34]}
+{"kind":"textbox","id":"sh/a1wrqdov","slide":1,"text":"Campus Placement &\nInternship Management System","textPreview":"Campus Placement & | Internship Management System","textChars":47,"textLines":2,"bbox":[72,174,610,190]}
+{"kind":"textbox","id":"sh/b25szipg","slide":1,"text":"An automated, role-based portal for campus recruitment","textPreview":"An automated, role-based portal for campus recruitment","textChars":54,"textLines":1,"bbox":[76,384,570,54]}
+{"kind":"shape","id":"sh/c3etsn6l","slide":1,"bbox":[76,463,488,0]}
+{"kind":"textbox","id":"sh/x47a1s76","slide":1,"text":"Presented by","textPreview":"Presented by","textChars":12,"textLines":1,"bbox":[76,500,132,28]}
+{"kind":"textbox","id":"sh/ux0b2xoz","slide":1,"text":"[Your Name]","textPreview":"[Your Name]","textChars":11,"textLines":1,"bbox":[76,531,250,36]}
+{"kind":"textbox","id":"sh/vy9sb2pk","slide":1,"text":"[Branch / Roll No]","textPreview":"[Branch / Roll No]","textChars":18,"textLines":1,"bbox":[76,573,300,28]}
+{"kind":"textbox","id":"sh/budoz6l4","slide":1,"text":"[College Name]","textPreview":"[College Name]","textChars":14,"textLines":1,"bbox":[76,608,340,28]}
+{"kind":"textbox","id":"sh/atk7q14j","slide":1,"text":"6-SLIDE PROJECT OVERVIEW","textPreview":"6-SLIDE PROJECT OVERVIEW","textChars":24,"textLines":1,"bbox":[1001,667,211,22]}
+{"kind":"image","id":"im/2t8bi98r","slide":1,"name":"","alt":"Campus recruitment network connecting students, university and employers","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/pgzudo7i","slide":1,"name":"","alt":"Campus placement portal logo","bbox":[72,54,52,52]}
+{"kind":"notes","id":"nt/2ao5rp","slide":1,"text":"This project presents a centralized platform for managing campus placements and internships from drive creation through final selection. It connects students, recruiters, and the placement cell through one secure and transparent workflow."}
+{"kind":"slide","id":"sl/ms0c2c","slide":2,"title":"02","textShapes":16}
+{"kind":"textbox","id":"sh/g3y5o7e9","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[54,42,54,28]}
+{"kind":"textbox","id":"sh/f2pov2do","slide":2,"text":"Problem statement and proposed solution","textPreview":"Problem statement and proposed solution","textChars":39,"textLines":1,"bbox":[112,35,1050,54]}
+{"kind":"textbox","id":"sh/u1gnmxw3","slide":2,"text":"Manual placement operations create delay, inconsistency, and poor visibility","textPreview":"Manual placement operations create delay, inconsistency, and poor visibility","textChars":76,"textLines":1,"bbox":[112,91,1030,34]}
+{"kind":"shape","id":"sh/t076tsvi","slide":2,"bbox":[54,132,1172,0]}
+{"kind":"textbox","id":"sh/7yporixc","slide":2,"text":"TODAY","textPreview":"TODAY","textChars":5,"textLines":1,"bbox":[62,164,120,26]}
+{"kind":"textbox","id":"sh/6xwnidwr","slide":2,"text":"Fragmented process","textPreview":"Fragmented process","textChars":18,"textLines":1,"bbox":[62,193,384,44]}
+{"kind":"textbox","id":"sh/dwr65cvm","slide":2,"text":"Spreadsheets require repeated eligibility checks and manual updates.\nStudents miss deadlines while recruiters review unsuitable profiles.\nDuplicate applications and multiple offers reduce policy fairness.\nPlacement officers lack a live, college-wide view of outcomes.","textPreview":"Spreadsheets require repeated eligibility checks and manual updates. | Students miss deadlines while recruiters review unsuitable profile...","textChars":267,"textLines":4,"bbox":[62,254,480,322]}
+{"kind":"shape","id":"sh/cvipwreh","slide":2,"bbox":[620,178,170,154]}
+{"kind":"textbox","id":"sh/ih0nah87","slide":2,"text":"MANUAL","textPreview":"MANUAL","textChars":6,"textLines":1,"bbox":[640,197,130,24]}
+{"kind":"shape","id":"sh/3i94jmpc","slide":2,"bbox":[644,236,122,0]}
+{"kind":"shape","id":"sh/4ji5crqx","slide":2,"bbox":[644,256,122,0]}
+{"kind":"shape","id":"sh/5krmlw7i","slide":2,"bbox":[644,276,122,0]}
+{"kind":"shape","id":"sh/utgn6h8v","slide":2,"bbox":[644,296,122,0]}
+{"kind":"shape","id":"sh/vup4fmpg","slide":2,"bbox":[675,228,0,72]}
+{"kind":"shape","id":"sh/gvy587q1","slide":2,"bbox":[705,228,0,72]}
+{"kind":"shape","id":"sh/hw7mhc7m","slide":2,"bbox":[735,228,0,72]}
+{"kind":"shape","id":"sh/epkni18z","slide":2,"bbox":[925,178,255,154]}
+{"kind":"textbox","id":"sh/fqt4r6pk","slide":2,"text":"CENTRAL PORTAL","textPreview":"CENTRAL PORTAL","textChars":14,"textLines":1,"bbox":[947,196,212,24]}
+{"kind":"textbox","id":"sh/bi1sne10","slide":2,"text":"One verified source\nof recruitment data","textPreview":"One verified source | of recruitment data","textChars":39,"textLines":2,"bbox":[949,237,208,62]}
+{"kind":"shape","id":"sh/qhsbu9kf","slide":2,"bbox":[790,255,135,0]}
+{"kind":"textbox","id":"sh/dk3ap4j6","slide":2,"text":"PROPOSED","textPreview":"PROPOSED","textChars":8,"textLines":1,"bbox":[620,382,130,26]}
+{"kind":"textbox","id":"sh/cjatwj2l","slide":2,"text":"Centralize the complete cycle","textPreview":"Centralize the complete cycle","textChars":29,"textLines":1,"bbox":[620,412,560,40]}
+{"kind":"textbox","id":"sh/zmlsre1w","slide":2,"text":"The portal applies one rule set for drive publishing, eligibility, applications, hiring stages, and institutional analytics.","textPreview":"The portal applies one rule set for drive publishing, eligibility, applications, hiring stages, and institutional analytics.","textChars":124,"textLines":1,"bbox":[620,468,560,88]}
+{"kind":"textbox","id":"sh/ylcby9kb","slide":2,"text":"Outcome","textPreview":"Outcome","textChars":7,"textLines":1,"bbox":[620,586,88,24]}
+{"kind":"textbox","id":"sh/lo3atoj2","slide":2,"text":"Less manual work. Clearer decisions. Fairer access.","textPreview":"Less manual work. Clearer decisions. Fairer access.","textChars":51,"textLines":1,"bbox":[714,580,470,34]}
+{"kind":"textbox","id":"sh/0nut0j2h","slide":2,"text":"Campus Placement & Internship Management System","textPreview":"Campus Placement & Internship Management System","textChars":47,"textLines":1,"bbox":[54,686,520,18]}
+{"kind":"textbox","id":"sh/nqlsvy18","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1172,684,54,18]}
+{"kind":"image","id":"im/5cf6x0nm","slide":2,"name":"","alt":"Campus placement portal logo","bbox":[1178,34,46,46]}
+{"kind":"notes","id":"nt/ms0c2c","slide":2,"text":"Traditional placement drives depend on spreadsheets and repeated manual checks, which increases errors and slows decisions. Our portal centralizes the full recruitment cycle and gives every role the same verified source of information."}
+{"kind":"slide","id":"sl/5lab5w","slide":3,"title":"03","textShapes":28}
+{"kind":"textbox","id":"sh/k7e50nut","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[54,42,54,28]}
+{"kind":"textbox","id":"sh/j65orit8","slide":3,"text":"User roles and end-to-end workflow","textPreview":"User roles and end-to-end workflow","textChars":34,"textLines":1,"bbox":[112,35,1050,54]}
+{"kind":"textbox","id":"sh/i5wnydcn","slide":3,"text":"Three roles operate inside one controlled recruitment pipeline","textPreview":"Three roles operate inside one controlled recruitment pipeline","textChars":62,"textLines":1,"bbox":[112,91,1030,34]}
+{"kind":"shape","id":"sh/xkn6p8bi","slide":3,"bbox":[54,132,1172,0]}
+{"kind":"shape","id":"sh/vi5onitc","slide":3,"bbox":[62,166,296,58]}
+{"kind":"textbox","id":"sh/ahcnudcr","slide":3,"text":"ST","textPreview":"ST","textChars":2,"textLines":1,"bbox":[78,175,40,40]}
+{"kind":"textbox","id":"sh/9g36l8b6","slide":3,"text":"Student","textPreview":"Student","textChars":7,"textLines":1,"bbox":[132,175,204,23]}
+{"kind":"textbox","id":"sh/8fu5s3ul","slide":3,"text":"Profile, eligibility, application status","textPreview":"Profile, eligibility, application status","textChars":40,"textLines":1,"bbox":[132,198,204,18]}
+{"kind":"shape","id":"sh/6t4rqpcb","slide":3,"bbox":[62,241,296,58]}
+{"kind":"textbox","id":"sh/7udszudw","slide":3,"text":"RC","textPreview":"RC","textChars":2,"textLines":1,"bbox":[78,250,40,40]}
+{"kind":"textbox","id":"sh/8vm9szuh","slide":3,"text":"Recruiter","textPreview":"Recruiter","textChars":9,"textLines":1,"bbox":[132,250,204,23]}
+{"kind":"textbox","id":"sh/twva14vm","slide":3,"text":"Drives, screening, interviews, offers","textPreview":"Drives, screening, interviews, offers","textChars":37,"textLines":1,"bbox":[132,273,204,18]}
+{"kind":"shape","id":"sh/yp4rmpcz","slide":3,"bbox":[62,316,296,58]}
+{"kind":"textbox","id":"sh/zqdsvudk","slide":3,"text":"TP","textPreview":"TP","textChars":2,"textLines":1,"bbox":[78,325,40,40]}
+{"kind":"textbox","id":"sh/krm9ofu5","slide":3,"text":"TPO / Admin","textPreview":"TPO / Admin","textChars":11,"textLines":1,"bbox":[132,325,204,23]}
+{"kind":"textbox","id":"sh/lsvaxkvq","slide":3,"text":"Policy, oversight, analytics","textPreview":"Policy, oversight, analytics","textChars":28,"textLines":1,"bbox":[132,348,204,18]}
+{"kind":"shape","id":"sh/a1kri5c3","slide":3,"bbox":[424,194,166,260]}
+{"kind":"textbox","id":"sh/b2tsrado","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[442,214,42,42]}
+{"kind":"textbox","id":"sh/f69oj6tg","slide":3,"text":"Post drive","textPreview":"Post drive","textChars":10,"textLines":1,"bbox":[442,274,130,42]}
+{"kind":"textbox","id":"sh/e5g7q1sv","slide":3,"text":"Recruiter defines role, deadline, branch, CGPA, batch, and backlog limits.","textPreview":"Recruiter defines role, deadline, branch, CGPA, batch, and backlog limits.","textChars":74,"textLines":1,"bbox":[442,332,130,98]}
+{"kind":"shape","id":"sh/18r6lgbm","slide":3,"bbox":[622,194,166,260]}
+{"kind":"textbox","id":"sh/07ipsba1","slide":3,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[640,214,42,42]}
+{"kind":"textbox","id":"sh/nu98nqtc","slide":3,"text":"Verify and apply","textPreview":"Verify and apply","textChars":16,"textLines":1,"bbox":[640,274,130,42]}
+{"kind":"textbox","id":"sh/2907ulsr","slide":3,"text":"Student profile is checked against policy before the application is saved.","textPreview":"Student profile is checked against policy before the application is saved.","textChars":74,"textLines":1,"bbox":[640,332,130,98]}
+{"kind":"shape","id":"sh/pwrqpgbi","slide":3,"bbox":[820,194,166,260]}
+{"kind":"textbox","id":"sh/ovipwvax","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[838,214,42,42]}
+{"kind":"textbox","id":"sh/3e5obmt8","slide":3,"text":"Advance pipeline","textPreview":"Advance pipeline","textChars":16,"textLines":1,"bbox":[838,274,130,42]}
+{"kind":"textbox","id":"sh/idw7ihsn","slide":3,"text":"Recruiter or TPO shortlists, schedules interviews, and updates stages.","textPreview":"Recruiter or TPO shortlists, schedules interviews, and updates stages.","textChars":70,"textLines":1,"bbox":[838,332,130,98]}
+{"kind":"shape","id":"sh/8julsnql","slide":3,"bbox":[1018,194,166,260]}
+{"kind":"textbox","id":"sh/tk3mlsr6","slide":3,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[1036,214,42,42]}
+{"kind":"textbox","id":"sh/6hc3qd8f","slide":3,"text":"Select and analyze","textPreview":"Select and analyze","textChars":18,"textLines":1,"bbox":[1036,274,130,42]}
+{"kind":"textbox","id":"sh/7il4ji90","slide":3,"text":"Offers update placement status while dashboards show college outcomes.","textPreview":"Offers update placement status while dashboards show college outcomes.","textChars":70,"textLines":1,"bbox":[1036,332,130,98]}
+{"kind":"shape","id":"sh/kfulonq9","slide":3,"bbox":[590,324,32,0]}
+{"kind":"shape","id":"sh/lg3mhsru","slide":3,"bbox":[788,324,32,0]}
+{"kind":"shape","id":"sh/yds3md8j","slide":3,"bbox":[986,324,32,0]}
+{"kind":"textbox","id":"sh/je14fi9o","slide":3,"text":"Unified audit trail","textPreview":"Unified audit trail","textChars":19,"textLines":1,"bbox":[426,499,756,28]}
+{"kind":"textbox","id":"sh/4be507qt","slide":3,"text":"Every application stage remains visible to the right users through role-based access and timestamped status history.","textPreview":"Every application stage remains visible to the right users through role-based access and timestamped status history.","textChars":116,"textLines":1,"bbox":[456,538,698,58]}
+{"kind":"textbox","id":"sh/5cnmtcre","slide":3,"text":"Campus Placement & Internship Management System","textPreview":"Campus Placement & Internship Management System","textChars":47,"textLines":1,"bbox":[54,686,520,18]}
+{"kind":"textbox","id":"sh/1gzil47q","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1172,684,54,18]}
+{"kind":"image","id":"im/tgbypkby","slide":3,"name":"","alt":"Campus placement portal logo","bbox":[1178,34,46,46]}
+{"kind":"notes","id":"nt/5lab5w","slide":3,"text":"Students, recruiters, and the placement office work in the same pipeline while seeing only the actions allowed for their role. The process starts with a criteria-based drive and ends with a recorded selection plus real-time institutional analytics."}
+{"kind":"slide","id":"sl/by1ho9","slide":4,"title":"04","textShapes":19}
+{"kind":"textbox","id":"sh/m1cz2pkf","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[54,42,54,28]}
+{"kind":"textbox","id":"sh/9o3idk36","slide":4,"text":"Key features and innovations","textPreview":"Key features and innovations","textChars":28,"textLines":1,"bbox":[112,35,1050,54]}
+{"kind":"textbox","id":"sh/onuh4f2l","slide":4,"text":"Policy enforcement and automation reduce repetitive decisions at every stage","textPreview":"Policy enforcement and automation reduce repetitive decisions at every stage","textChars":76,"textLines":1,"bbox":[112,91,1030,34]}
+{"kind":"shape","id":"sh/bql0fulw","slide":4,"bbox":[54,132,1172,0]}
+{"kind":"shape","id":"sh/xsnih432","slide":4,"bbox":[506,258,270,178]}
+{"kind":"textbox","id":"sh/wreh8z2h","slide":4,"text":"AUTOMATION\nCORE","textPreview":"AUTOMATION | CORE","textChars":15,"textLines":2,"bbox":[546,296,190,70]}
+{"kind":"textbox","id":"sh/ru1g3qls","slide":4,"text":"Shared server-side rules","textPreview":"Shared server-side rules","textChars":24,"textLines":1,"bbox":[552,376,178,24]}
+{"kind":"shape","id":"sh/qtszu5k7","slide":4,"bbox":[64,176,365,154]}
+{"kind":"textbox","id":"sh/kju14vut","slide":4,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[82,194,52,30]}
+{"kind":"textbox","id":"sh/lk3id0ve","slide":4,"text":"Automated eligibility engine","textPreview":"Automated eligibility engine","textChars":28,"textLines":1,"bbox":[140,192,271,42]}
+{"kind":"textbox","id":"sh/yhsj2lc3","slide":4,"text":"Validates drive status, deadline, CGPA, branch, batch, and active backlogs before submission.","textPreview":"Validates drive status, deadline, CGPA, branch, batch, and active backlogs before submission.","textChars":93,"textLines":1,"bbox":[84,248,325,62]}
+{"kind":"shape","id":"sh/ji10bqd8","slide":4,"bbox":[851,176,365,154]}
+{"kind":"textbox","id":"sh/87u18fu5","slide":4,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[869,194,52,30]}
+{"kind":"textbox","id":"sh/t83ih0vq","slide":4,"text":"Fair 1-offer placement policy","textPreview":"Fair 1-offer placement policy","textChars":29,"textLines":1,"bbox":[927,192,271,42]}
+{"kind":"textbox","id":"sh/6lcj65cz","slide":4,"text":"A selected student cannot apply to another placement drive, while internships remain available.","textPreview":"A selected student cannot apply to another placement drive, while internships remain available.","textChars":95,"textLines":1,"bbox":[871,248,325,62]}
+{"kind":"shape","id":"sh/7ml0fadk","slide":4,"bbox":[64,436,365,154]}
+{"kind":"textbox","id":"sh/orahwbel","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[82,454,52,30]}
+{"kind":"textbox","id":"sh/9cji5gv6","slide":4,"text":"One-click auto-shortlist","textPreview":"One-click auto-shortlist","textChars":24,"textLines":1,"bbox":[140,452,271,42]}
+{"kind":"textbox","id":"sh/5wr6d8jy","slide":4,"text":"Eligible applicants in the Applied stage advance to Shortlisted through one controlled action.","textPreview":"Eligible applicants in the Applied stage advance to Shortlisted through one controlled action.","textChars":94,"textLines":1,"bbox":[84,508,325,62]}
+{"kind":"shape","id":"sh/4vipk32d","slide":4,"bbox":[851,436,365,154]}
+{"kind":"textbox","id":"sh/3u9oby1s","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[869,454,52,30]}
+{"kind":"textbox","id":"sh/itg7itk7","slide":4,"text":"Real-time application tracking","textPreview":"Real-time application tracking","textChars":30,"textLines":1,"bbox":[927,452,271,42]}
+{"kind":"textbox","id":"sh/d0rqhsju","slide":4,"text":"Students follow Applied, Shortlisted, Interviewed, Selected, or Rejected with status history.","textPreview":"Students follow Applied, Shortlisted, Interviewed, Selected, or Rejected with status history.","textChars":93,"textLines":1,"bbox":[871,508,325,62]}
+{"kind":"shape","id":"sh/szipon29","slide":4,"bbox":[429,253,77,94]}
+{"kind":"shape","id":"sh/ry9ofi14","slide":4,"bbox":[776,253,75,94]}
+{"kind":"shape","id":"sh/qx07mdkj","slide":4,"bbox":[429,347,77,166]}
+{"kind":"shape","id":"sh/14bqlsj6","slide":4,"bbox":[776,347,75,166]}
+{"kind":"textbox","id":"sh/032psn2l","slide":4,"text":"Campus Placement & Internship Management System","textPreview":"Campus Placement & Internship Management System","textChars":47,"textLines":1,"bbox":[54,686,520,18]}
+{"kind":"textbox","id":"sh/y9c3mp03","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1172,684,54,18]}
+{"kind":"image","id":"im/vyhojmp8","slide":4,"name":"","alt":"Campus placement portal logo","bbox":[1178,34,46,46]}
+{"kind":"notes","id":"nt/by1ho9","slide":4,"text":"The eligibility engine and one-offer rule form the policy core of the system, with the same checks enforced on the server before any database write. Auto-shortlisting saves recruiter time, while stage history gives students immediate visibility into each application."}
+{"kind":"slide","id":"sl/id9gws","slide":5,"title":"05","textShapes":20}
+{"kind":"textbox","id":"sh/rexwf2lc","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[54,42,54,28]}
+{"kind":"textbox","id":"sh/sf6do72x","slide":5,"text":"System architecture and technology stack","textPreview":"System architecture and technology stack","textChars":40,"textLines":1,"bbox":[112,35,1050,54]}
+{"kind":"textbox","id":"sh/tgfehc3i","slide":5,"text":"An MVC web application deployed on Vercel with MongoDB Atlas","textPreview":"An MVC web application deployed on Vercel with MongoDB Atlas","textChars":60,"textLines":1,"bbox":[112,91,1030,34]}
+{"kind":"shape","id":"sh/i94vidkv","slide":5,"bbox":[54,132,1172,0]}
+{"kind":"shape","id":"sh/4bmdkn21","slide":5,"bbox":[64,201,245,280]}
+{"kind":"textbox","id":"sh/5cfeds3m","slide":5,"text":"CLIENT","textPreview":"CLIENT","textChars":6,"textLines":1,"bbox":[88,222,196,26]}
+{"kind":"textbox","id":"sh/258fuhkf","slide":5,"text":"Browser views","textPreview":"Browser views","textChars":13,"textLines":1,"bbox":[88,266,196,42]}
+{"kind":"textbox","id":"sh/36hwnmlk","slide":5,"text":"EJS server-side templates\nBootstrap 5 responsive UI\nRole-aware navigation","textPreview":"EJS server-side templates | Bootstrap 5 responsive UI | Role-aware navigation","textChars":73,"textLines":3,"bbox":[91,332,190,102]}
+{"kind":"shape","id":"sh/76ts3qpg","slide":5,"bbox":[390,164,500,358]}
+{"kind":"textbox","id":"sh/m5kbul8v","slide":5,"text":"APPLICATION LAYER · VERCEL","textPreview":"APPLICATION LAYER · VERCEL","textChars":26,"textLines":1,"bbox":[418,186,444,26]}
+{"kind":"textbox","id":"sh/98ba5g7m","slide":5,"text":"Node.js + Express.js","textPreview":"Node.js + Express.js","textChars":20,"textLines":1,"bbox":[418,226,444,44]}
+{"kind":"shape","id":"sh/872twbq1","slide":5,"bbox":[438,298,404,48]}
+{"kind":"textbox","id":"sh/vadc7qps","slide":5,"text":"Routes + middleware","textPreview":"Routes + middleware","textChars":19,"textLines":1,"bbox":[455,304,150,35]}
+{"kind":"textbox","id":"sh/u9kbyl87","slide":5,"text":"Session authentication and role guards","textPreview":"Session authentication and role guards","textChars":38,"textLines":1,"bbox":[612,304,211,35]}
+{"kind":"shape","id":"sh/hcvu907i","slide":5,"bbox":[438,360,404,48]}
+{"kind":"textbox","id":"sh/wbmt0vqd","slide":5,"text":"Controllers","textPreview":"Controllers","textChars":11,"textLines":1,"bbox":[455,366,150,35]}
+{"kind":"textbox","id":"sh/jedcbapo","slide":5,"text":"Drive, application, and status workflows","textPreview":"Drive, application, and status workflows","textChars":40,"textLines":1,"bbox":[612,366,211,35]}
+{"kind":"shape","id":"sh/id4b2583","slide":5,"bbox":[438,422,404,48]}
+{"kind":"textbox","id":"sh/et8vu9sb","slide":5,"text":"Models","textPreview":"Models","textChars":6,"textLines":1,"bbox":[455,428,150,35]}
+{"kind":"textbox","id":"sh/fuhw3u9w","slide":5,"text":"Mongoose schemas, validation, and unique indexes","textPreview":"Mongoose schemas, validation, and unique indexes","textChars":48,"textLines":1,"bbox":[612,428,211,35]}
+{"kind":"shape","id":"sh/gvqdwzah","slide":5,"bbox":[971,201,245,280]}
+{"kind":"textbox","id":"sh/1wze54r2","slide":5,"text":"DATA","textPreview":"DATA","textChars":4,"textLines":1,"bbox":[995,222,196,26]}
+{"kind":"textbox","id":"sh/65ovqpsf","slide":5,"text":"MongoDB Atlas","textPreview":"MongoDB Atlas","textChars":13,"textLines":1,"bbox":[995,266,196,42]}
+{"kind":"textbox","id":"sh/r6xwzu90","slide":5,"text":"Cloud document database\nMongoose ODM\nCompound index prevents duplicates","textPreview":"Cloud document database | Mongoose ODM | Compound index prevents duplicates","textChars":71,"textLines":3,"bbox":[998,332,190,102]}
+{"kind":"shape","id":"sh/s76dszal","slide":5,"bbox":[309,341,81,2]}
+{"kind":"shape","id":"sh/t8fe14rq","slide":5,"bbox":[890,341,81,2]}
+{"kind":"textbox","id":"sh/q1sf2tsj","slide":5,"text":"MVC separates view rendering, business rules, and persistent data.\nbcryptjs and server-side sessions protect authenticated access.\nRESTful routes keep student, recruiter, and admin operations modular.\nVercel hosts the app while Atlas provides managed cloud persistence.","textPreview":"MVC separates view rendering, business rules, and persistent data. | bcryptjs and server-side sessions protect authenticated access. | RE...","textChars":269,"textLines":4,"bbox":[92,558,1092,100]}
+{"kind":"textbox","id":"sh/b21wbe94","slide":5,"text":"Campus Placement & Internship Management System","textPreview":"Campus Placement & Internship Management System","textChars":47,"textLines":1,"bbox":[54,686,520,18]}
+{"kind":"textbox","id":"sh/lw3y1sb6","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1172,684,54,18]}
+{"kind":"image","id":"im/2xkretof","slide":5,"name":"","alt":"Campus placement portal logo","bbox":[1178,34,46,46]}
+{"kind":"notes","id":"nt/id9gws","slide":5,"text":"The application follows MVC so presentation, business logic, and data access remain easy to maintain and test. Node.js and Express run the workflows on Vercel, while Mongoose connects the application to MongoDB Atlas and enforces database integrity."}
+{"kind":"slide","id":"sl/1dylcr","slide":6,"title":"06","textShapes":23}
+{"kind":"textbox","id":"sh/tgv61oze","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[54,42,54,28]}
+{"kind":"textbox","id":"sh/6d4nqt03","slide":6,"text":"References and acknowledgements","textPreview":"References and acknowledgements","textChars":31,"textLines":1,"bbox":[112,35,1050,54]}
+{"kind":"textbox","id":"sh/7edozeh8","slide":6,"text":"Built from official documentation and real placement-cell operating patterns","textPreview":"Built from official documentation and real placement-cell operating patterns","textChars":76,"textLines":1,"bbox":[112,91,1030,34]}
+{"kind":"shape","id":"sh/kbm5ojix","slide":6,"bbox":[54,132,1172,0]}
+{"kind":"textbox","id":"sh/y9knm90r","slide":6,"text":"Technical references","textPreview":"Technical references","textChars":20,"textLines":1,"bbox":[64,174,520,40]}
+{"kind":"textbox","id":"sh/jad4vehc","slide":6,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[66,232,42,42]}
+{"kind":"textbox","id":"sh/w725kzil","slide":6,"text":"Node.js and Express.js","textPreview":"Node.js and Express.js","textChars":22,"textLines":1,"bbox":[126,231,440,25]}
+{"kind":"textbox","id":"sh/x8bmt4z6","slide":6,"text":"nodejs.org/docs  ·  expressjs.com","textPreview":"nodejs.org/docs  ·  expressjs.com","textChars":33,"textLines":1,"bbox":[126,260,440,22]}
+{"kind":"textbox","id":"sh/d03y543u","slide":6,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[66,314,42,42]}
+{"kind":"textbox","id":"sh/cfuxwz29","slide":6,"text":"MongoDB Atlas and Mongoose","textPreview":"MongoDB Atlas and Mongoose","textChars":26,"textLines":1,"bbox":[126,313,440,25]}
+{"kind":"textbox","id":"sh/relg3ulo","slide":6,"text":"mongodb.com/docs/atlas  ·  mongoosejs.com/docs","textPreview":"mongodb.com/docs/atlas  ·  mongoosejs.com/docs","textChars":46,"textLines":1,"bbox":[126,342,440,22]}
+{"kind":"textbox","id":"sh/qdcfupk3","slide":6,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[66,396,42,42]}
+{"kind":"textbox","id":"sh/pc3e1k3i","slide":6,"text":"EJS and Bootstrap 5","textPreview":"EJS and Bootstrap 5","textChars":19,"textLines":1,"bbox":[126,395,440,25]}
+{"kind":"textbox","id":"sh/4buxsz2x","slide":6,"text":"ejs.co  ·  getbootstrap.com/docs/5.3","textPreview":"ejs.co  ·  getbootstrap.com/docs/5.3","textChars":36,"textLines":1,"bbox":[126,424,440,22]}
+{"kind":"textbox","id":"sh/3alwzuls","slide":6,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[66,478,42,42]}
+{"kind":"textbox","id":"sh/29cfqpk7","slide":6,"text":"Vercel deployment","textPreview":"Vercel deployment","textChars":17,"textLines":1,"bbox":[126,477,440,25]}
+{"kind":"textbox","id":"sh/h8jexk3m","slide":6,"text":"vercel.com/docs","textPreview":"vercel.com/docs","textChars":15,"textLines":1,"bbox":[126,506,440,22]}
+{"kind":"shape","id":"sh/g7axofm1","slide":6,"bbox":[624,174,0,414]}
+{"kind":"textbox","id":"sh/8rex4fux","slide":6,"text":"Functional inspiration","textPreview":"Functional inspiration","textChars":22,"textLines":1,"bbox":[672,174,510,40]}
+{"kind":"textbox","id":"sh/tsnydkbi","slide":6,"text":"University training and placement cell policies for eligibility and offer rules.\nRecruitment platforms such as Superset and Handshake for workflow inspiration.\nProject requirements and operational scenarios documented in the repository.","textPreview":"University training and placement cell policies for eligibility and offer rules. | Recruitment platforms such as Superset and Handshake f...","textChars":236,"textLines":3,"bbox":[674,236,496,176]}
+{"kind":"shape","id":"sh/6pwf25cr","slide":6,"bbox":[672,445,498,143]}
+{"kind":"textbox","id":"sh/7q5gbatc","slide":6,"text":"ACKNOWLEDGEMENT","textPreview":"ACKNOWLEDGEMENT","textChars":15,"textLines":1,"bbox":[700,467,442,24]}
+{"kind":"textbox","id":"sh/knex0ful","slide":6,"text":"Thank you","textPreview":"Thank you","textChars":9,"textLines":1,"bbox":[700,500,442,38]}
+{"kind":"textbox","id":"sh/lony9kb6","slide":6,"text":"[Project Guide] · Faculty Members · Placement Coordinators","textPreview":"[Project Guide] · Faculty Members · Placement Coordinators","textChars":58,"textLines":1,"bbox":[706,548,430,24]}
+{"kind":"textbox","id":"sh/ylcfy5cv","slide":6,"text":"Campus Placement & Internship Management System","textPreview":"Campus Placement & Internship Management System","textChars":47,"textLines":1,"bbox":[54,686,520,18]}
+{"kind":"textbox","id":"sh/jmlw7atg","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1172,684,54,18]}
+{"kind":"image","id":"im/4fqhsbyt","slide":6,"name":"","alt":"Campus placement portal logo","bbox":[1178,34,46,46]}
+{"kind":"notes","id":"nt/1dylcr","slide":6,"text":"We used official technology documentation and studied real placement-cell rules plus established recruitment platforms to shape the system. I would like to thank our project guide, faculty members, and placement coordinators for their technical and operational guidance."}
